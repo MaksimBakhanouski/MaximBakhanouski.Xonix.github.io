@@ -30,8 +30,8 @@ const Xonix = (function () {//модуль игры
     function clickSoundStop() {
         audioEnemyIn.pause();
         audioEnemyIn.currentTime = 0;
-        audioEnemyOut.pause();
-        audioEnemyOut.currentTime = 0;
+        //audioEnemyOut.pause();
+        //audioEnemyOut.currentTime = 0;
         audioGameOver.pause();
         audioGameOver.currentTime = 0;
         audioLossOfLife.pause();
