@@ -1,2 +1,2 @@
-# MaximBakhanouski.github.io
+# MaximBakhanouski.Xonix.github.io
 Игра Xonix
