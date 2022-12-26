@@ -30,8 +30,8 @@ const Xonix = (function () {//модуль игры
     function clickSoundStop() {
         audioEnemyIn.pause();
         audioEnemyIn.currentTime = 0;
-        //audioEnemyOut.pause();
-        //audioEnemyOut.currentTime = 0;
+        audioEnemyOut.pause();
+        audioEnemyOut.currentTime = 0;
         audioGameOver.pause();
         audioGameOver.currentTime = 0;
         audioLossOfLife.pause();
@@ -45,8 +45,8 @@ const Xonix = (function () {//модуль игры
     }
 
     function clickSoundEnemyOut() {//звук врагов на суше (на территории, на которой стоим)
-        //audioEnemyOut.currentTime = 0;
-        //audioEnemyOut.play();
+        audioEnemyOut.currentTime = 0;
+        audioEnemyOut.play();        
     }
 
     function clickSoundGameOver() {//звук конец игры
@@ -567,7 +567,7 @@ const Xonix = (function () {//модуль игры
             };
 
             for (let i = 0; i < colEnemyIn; i++) {
-                let coordX = this.getRndInteger((widthLand + 3 * dataObject.widthCell), (colCell - widthLand - 3) * dataObject.widthCell);
+                let coordX = this.getRndInteger((widthLand + 3) * dataObject.widthCell, (colCell - widthLand - 3) * dataObject.widthCell);
                 let coordY = this.getRndInteger((widthLand + 3) * dataObject.widthCell, (colRow - widthLand - 3) * dataObject.widthCell);
                 let speedX = ((Math.random() < 0.5) ? -1 : 1) * this.getRndInteger(1, 5);
                 let speedY = ((Math.random() < 0.5) ? -1 : 1) * this.getRndInteger(1, 5);
@@ -799,10 +799,9 @@ const Xonix = (function () {//модуль игры
             if (Math.round(xonixPoint.posXEnd / dataObject.widthCell) < xonixPoint.widthLand) {
                 xonixPoint.posXEnd = xonixPoint.widthLand;
                 xonixPoint.speedX = -xonixPoint.speedX;
-                clickAudioEnemyIn();
             }
-            if (Math.round(xonixPoint.posXEnd / dataObject.widthCell) > dataObject.field.colCell - xonixPoint.widthLand - 1) {
-                clickSoundEnemyOut();
+            if (Math.round(xonixPoint.posXEnd / dataObject.widthCell) > dataObject.field.colCell - xonixPoint.widthLand) {
+                clickAudioEnemyIn();
                 let posY = xonixPoint.posY;
                 xonixPoint.posY = xonixPoint.posYEnd;
                 xonixPoint.posYEnd = posY;
@@ -814,10 +813,8 @@ const Xonix = (function () {//модуль игры
             if (Math.round(xonixPoint.posYEnd / dataObject.widthCell) < xonixPoint.widthLand) {
                 xonixPoint.posYEnd = 0;
                 xonixPoint.speedY = -xonixPoint.speedY;
-                clickAudioEnemyIn();
-
             }
-            if (Math.round(xonixPoint.posYEnd / dataObject.widthCell) > dataObject.field.colRow - xonixPoint.widthLand - 1) {
+            if (Math.round(xonixPoint.posYEnd / dataObject.widthCell) > dataObject.field.colRow - xonixPoint.widthLand) {
                 clickAudioEnemyIn();
                 let posX = xonixPoint.posX;
                 xonixPoint.posX = xonixPoint.posXEnd;
@@ -887,7 +884,7 @@ const Xonix = (function () {//модуль игры
                 xonixPoint.posY = xonixPoint.posYEnd;
                 xonixPoint.posXEnd = posX;
                 xonixPoint.posYEnd = posY;
-                clickAudioEnemyIn();
+                //clickAudioEnemyIn();
                 return;
             };
 
@@ -916,7 +913,7 @@ const Xonix = (function () {//модуль игры
             if (Math.round(xonixPoint.posXEnd / dataObject.widthCell) < 0) {
                 xonixPoint.posXEnd = 0;
                 xonixPoint.speedX = -xonixPoint.speedX;
-                clickSoundEnemyOut();
+                
             }
             if (Math.round(xonixPoint.posXEnd / dataObject.widthCell) > dataObject.field.colCell - 1) {
                 clickSoundEnemyOut();
@@ -930,8 +927,7 @@ const Xonix = (function () {//модуль игры
             }
             if (Math.round(xonixPoint.posYEnd / dataObject.widthCell) < 0) {
                 xonixPoint.posYEnd = 0;
-                xonixPoint.speedY = -xonixPoint.speedY;
-                clickSoundEnemyOut();
+                xonixPoint.speedY = -xonixPoint.speedY;                
 
             }
             if (Math.round(xonixPoint.posYEnd / dataObject.widthCell) > dataObject.field.colRow - 1) {
@@ -1640,3 +1636,5 @@ const Xonix = (function () {//модуль игры
     };
 
 });
+
+
